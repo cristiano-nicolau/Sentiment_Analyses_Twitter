@@ -1,0 +1,73 @@
+\section{Comparison with State-of-the-Art Methods}
+
+To thoroughly evaluate the effectiveness of our developed models for sentiment analysis on Twitter data, we compared their performance against relevant state-of-the-art approaches found in academic literature. This comparison helps contextualize our findings, highlighting the strengths and limitations of various methodologies in handling the complexities of social media text. Our analysis includes a review of studies employing traditional machine learning, deep learning architectures, and modern transformer-based models specifically applied to sentiment analysis on Twitter or similar short text datasets.
+
+\begin{enumerate}
+\item \textbf{Machine Learning for Depression Detection on Twitter}: In the study \textit{Learning with Support Vector Machine for Depression Detection on Twitter} \cite{costa2021image}, the authors investigated the application of machine learning for classifying depressive and non-depressive posts on Twitter. Using a dataset of over 31,000 tweets, their findings demonstrated that a Support Vector Machine (SVM) model achieved an accuracy of 94\%, along with 91\% precision, recall, and F1-score. This study provides a strong benchmark for traditional machine learning methods on Twitter data, particularly concerning binary classification tasks.
+
+\item \textbf{Systematic Comparison of CNN and RNN for NLP}: The paper \textit{A Systematic Comparison of Convolutional Neural Networks and Recurrent Neural Networks for Text Classification} \cite{zhou2017systematic} presents a comprehensive analysis of CNNs and RNNs across various Natural Language Processing (NLP) tasks, including sentiment classification. This work highlights the general strengths of these deep learning architectures: CNNs excel at extracting position-invariant local features, and RNNs are adept at modeling sequential dependencies. 
+
+\item \textbf{Review of Sentiment Analysis on Twitter using NLP Models}: The paper \textit{Sentiment Analysis of Twitter data using NLP Models: A Comprehensive Review} \cite{prabhakar2024sentiment} is a recent and comprehensive review that surveys various approaches and methodologies for Twitter sentiment analysis. It synthesizes findings from multiple studies, discussing machine learning, deep learning, and hybrid models, while particularly emphasizing the emergence and impact of transformer-based architectures like BERT and GPT. This review provides valuable context on current trends, key models, and the importance of pre-processing and feature extraction in achieving effective sentiment analysis on Twitter data, presenting a broad spectrum of reported results.
+\end{enumerate}
+
+After analyzing these external works, we compiled a comparative summary of our models' performance alongside relevant benchmarks from the literature.
+
+\begin{table}[H]
+\centering
+\caption{Performance Metrics of Our Developed Models on Test Set}
+\begin{tabular}{||c|c|c|c|c||}
+\hline
+\textbf{Model Type} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} \\
+\hline \hline
+SVM with TF-IDF & \textbf{0.93} & \textbf{0.93} & \textbf{0.93} & \textbf{0.93} \\
+\hline
+CNN (Multi-Filter) & 0.85 & 0.86 & 0.85 & 0.85 \\
+\hline
+Improved LSTM & 0.89 & 0.89 & 0.89 & 0.89 \\
+\hline
+GRU & 0.89 & 0.89 & 0.89 & 0.89 \\
+\hline
+Bi-LSTM & 0.87 & 0.88 & 0.87 & 0.86 \\
+\hline
+BERT (Pre-trained) & 0.62 & 0.61 & 0.62 & 0.62 \\
+\hline
+BERT (Fine-tuned) & \textbf{0.93} & \textbf{0.93} & \textbf{0.93} & \textbf{0.93} \\
+\hline
+\end{tabular}
+\label{tab:our_models_results}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Performance for Depression Detection}
+\begin{tabular}{||l|c|c|l||}
+\hline
+\textbf{Model / Study} & \textbf{Metric} & \textbf{Score} & \textbf{Notes} \\
+\hline \hline
+SVM~\cite{costa2021image} & Accuracy & 0.94 & Binary classification \\
+\hline
+CNN~\cite{zhou2017systematic} & Accuracy & 82.38 & Sentiment Analyses \\
+GRU~\cite{zhou2017systematic} & Accuracy & 86.32 & Sentiment Analyses \\
+LSTM~\cite{zhou2017systematic} & Accuracy & 84.51 & Sentiment Analyses \\
+\hline
+BERT~\cite{prabhakar2024sentiment} & Accuracy & 0.93 & Comparative review \\
+BERT~\cite{prabhakar2024sentiment} & Accuracy & 0.89 & Comparative review \\
+BERT~\cite{prabhakar2024sentiment} & Accuracy & 0.94 & Comparative review \\
+\hline
+\end{tabular}
+\label{tab:sentic_models_simple}
+\end{table}
+
+Analyzing the results from our developed models (Table \ref{tab:our_models_results}) and the external literature (Table \ref{tab:sentic_models_simple}) we can draw several key comparisons:
+
+\begin{itemize}
+\item \textbf{Performance of Our Models}: Among our implementations, the fine-tuned BERT model achieved the highest accuracy of 0.93, matching the performance of our best SVM with TF-IDF model, which also achieved 0.93. This high performance for both highlights their effectiveness, albeit through different mechanisms. The significant leap from the pre-trained BERT model (0.62) to the fine-tuned version (0.93) underscores the critical importance of fine-tuning pre-trained language models on domain-specific datasets. Our improved LSTM and GRU models also demonstrated strong performance, both achieving an accuracy of 0.89, indicating their effectiveness in capturing sequential dependencies in text. The Bi-LSTM model, at 0.87 accuracy, further reinforced the strength of recurrent networks. The multi-filter CNN, while effective at capturing local patterns, yielded a slightly lower accuracy of 0.85 compared to RNNs and fine-tuned BERT, suggesting that for nuanced sentiment analysis, broader contextual understanding (RNNs) or advanced attention mechanisms (Transformers) are more beneficial.
+
+\item \textbf{Comparison with External SVM Benchmark}: The study by \cite{costa2021image} achieved an impressive 94\% accuracy with an SVM model for binary classification (depression vs. non-depression). It's important to note that this is a different task than our three-class sentiment analysis. Despite this difference, their result highlights the strong baseline performance that traditional machine learning algorithms like SVM can achieve on Twitter data, especially when features are well-engineered for specific binary tasks. Our SVM with TF-IDF model's 93\% accuracy on multi-class sentiment is highly competitive, demonstrating SVM's continued relevance.
+
+\item \textbf{Deep Learning Architectures vs. Transformers}: The systematic comparison by \cite{zhou2017systematic} provided general accuracy benchmarks for CNNs, GRUs, and LSTMs on sentiment classification tasks, reporting 82.38\% for CNNs, 86.32\% for GRUs, and 84.51\% for LSTMs. Our improved deep learning models (CNN at 0.85, LSTM and GRU at 0.89, Bi-LSTM at 0.87) generally outperform or are competitive with the ranges reported in this foundational paper, suggesting effective regularization and architecture design. This reinforces the understanding that RNNs often perform better than simpler CNNs for tasks requiring capturing long-range dependencies in text. However, the comprehensive review by \cite{prabhakar2024sentiment} emphasizes that transformer-based models like BERT currently represent the state-of-the-art in Twitter sentiment analysis, often reporting accuracies in the range of 0.89 to 0.94. Our fine-tuned BERT's superior performance (0.93 accuracy) strongly corroborates this, demonstrating its ability to leverage vast pre-training knowledge for highly accurate context-aware classification.
+
+\item \textbf{Computational Considerations}: While BERT offers the highest accuracy, it comes with a significant **computational cost, requiring approximately 4 to 5 hours for fine-tuning on our setup. This trade-off between performance and resource consumption is a critical consideration for practical deployment. In scenarios with limited computational resources, our robust SVM with TF-IDF model (0.93 accuracy) or the improved LSTM/GRU models (0.89 accuracy) offer competitive performance with considerably lower training times.
+\end{itemize}
+
+In conclusion, our fine-tuned BERT model, alongside our SVM with TF-IDF, stands out as the most accurate solution for multi-class sentiment analysis on our Twitter dataset, achieving state-of-the-art performance and reinforcing the power of transformer architectures in NLP. Our robust SVM, CNN, and RNN models also demonstrate strong capabilities, providing viable alternatives depending on performance requirements and available computational resources.

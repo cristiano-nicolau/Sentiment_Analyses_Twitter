@@ -1,0 +1,68 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage{pythonhighlight}
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{subcaption} 
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[english]{babel}
+\usepackage{listings} % code blocks
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage[acronym]{glossaries}
+\makeglossaries
+%\usepackage{etoolbox} % citações
+
+\hyphenation{}
+
+\begin{document}
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{Twitter Sentiment Analysis}
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{
+    \IEEEauthorblockN{Nelson Loureiro}
+   \IEEEauthorblockA{
+        Fundamentos de Aprendizagem Automática 24/25\\
+        Departamento de Eletrónica, Telecomunicações e Informática\\
+        University of Aveiro\\
+        Aveiro, Portugal\\
+        nelson.loureiro@ua.pt
+    }
+    \and
+    \IEEEauthorblockN{Cristiano Nicolau}
+    \IEEEauthorblockA{
+        Fundamentos de Aprendizagem Automática 24/25\\
+        Departamento de Eletrónica, Telecomunicações e Informática\\
+        University of Aveiro\\
+        Aveiro, Portugal\\
+        cristianonicolau@ua.pt
+    }
+}
+% make the title area
+\maketitle
+
+\input{0-abstract}
+\IEEEpeerreviewmaketitle
+\input{acronyms}
+\input{1-intro}
+\input{1.3-ml_models}
+\input{1.2-visualization}
+\input{2-results}
+\input{2.5-novelty}
+\input{3-conclusão}
+% printing acronyms
+\printglossary[type=\acronymtype,title=Acronyms]
+
+% references section
+\bibliography{refs}
+\bibliographystyle{IEEEtran}
+
+
+
+\end{document}

@@ -1,0 +1,75 @@
+\section{Introduction}
+\label{sec:Introduction}
+Sentiment analysis, the computational study of opinions, sentiments, and emotions expressed in text, is a vital domain in Natural Language Processing (NLP). It is used in a wide range of applications, such as brand monitoring, customer feedback analysis, political forecasting, and public opinion tracking. Analyzing sentiment on platforms like Twitter is particularly valuable due to the vast volume of real-time and user-generated content. Unlike generic text analysis, Twitter sentiment analysis involves navigating informal language, slang, abbreviations, emojis, and character limits, making it a challenging yet impactful task.
+
+This paper aims at two key objectives. First, it provides a comprehensive review of the latest advances in Twitter sentiment analysis, critically analyzing and comparing other studies in the field. Second, it develops, optimizes, and evaluates a diverse set of modeling approaches using the "Twitter Entity Sentiment Analysis" dataset from Kaggle \cite{twitter_dataset}. This dataset comprises tweets annotated with sentiments towards various entities, posing a challenging multi-class sentiment classification problem.
+
+Our study will explore different techniques in accurately classifying tweet sentiment. These include traditional machine learning approaches such as Support Vector Machines (SVM) with Bag-of-Words (BoW) and Term Frequency-Inverse Document Frequency (TF-IDF) features; lexicon-based methods like VADER and TextBlob; Deep Learning (DL) architectures including Feed-Forward Neural Networks (FNNs), Convolutional Neural Networks (CNNs) for text, Long Short-Term Memory (LSTM) networks, Gated Recurrent Units (GRUs), and Bidirectional LSTMs (Bi-LSTMs); and finally, transformer-based models like BERT. The paper concludes with a detailed comparative analysis of the model performances and offers key insights derived from the experiments.
+
+\section{State of the Art} 
+\label{sec}
+
+A comprehensive state-of-the-art review was performed to identify the most suitable models for Twitter sentiment analysis and to survey existing studies applying similar techniques. The goal is to understand the strengths and weaknesses of various approaches when applied to the unique characteristics of Twitter data.
+
+\subsection{Traditional Machine Learning Approaches}
+
+Before the widespread adoption of deep learning, traditional machine learning algorithms were standard for sentiment analysis. These methods typically rely on handcrafted features extracted from the text.
+
+
+\subsubsection{Support Vector Machines (SVM)}
+
+Support Vector Machines (SVMs) have been widely used for text classification tasks, including sentiment analysis, due to their effectiveness in high-dimensional spaces and their ability to model non-linear decision boundaries. When applied to Twitter data, SVMs are often combined with feature representations like Bag-of-Words (BoW) or TF-IDF. For instance, Pang et al. (2002) \cite{pang2002thumbs}  demonstrated early success using SVMs for classifying movie reviews, laying foundational work for sentiment analysis. Later studies, such as Go et al. (2009) \cite{go2009twitter}, specifically adapted SVMs for Twitter sentiment classification by incorporating features like emoticons and N-grams, achieving good performance. The choice between BoW, which counts word occurrences, and TF-IDF, which weights words by their importance in the corpus, can significantly impact performance, with TF-IDF often providing more nuanced feature representations.
+
+
+\subsection{Lexicon-Based Approaches}
+
+Lexicon-based methods classify text sentiment based on the semantic orientation of words and phrases it contains, using pre-defined dictionaries or lexicons where words are scored for polarity (positive, negative, neutral) and sometimes intensity.
+
+
+\subsubsection{VADER (Valence Aware Dictionary and sEntiment Reasoner)
+}
+
+VADER is a lexicon and rule-based sentiment analysis tool specifically attuned to sentiments expressed in social media. Hutto and Gilbert (2014) \cite{hutto2014vader} developed VADER to be particularly effective with microblogging content, as it considers lexical features common in such texts, like emoticons, slang, and degree modifiers (e.g., "very," "extremely"). It has been shown to perform well without requiring training data, making it a popular baseline.
+
+\subsubsection{TextBlob}
+
+TextBlob is a Python library for processing textual data, offering a straightforward API for common NLP tasks, including sentiment analysis. Its sentiment analysis module is based on a lexicon and a set of rules, providing polarity and subjectivity scores. While generally effective for well-structured text, its performance on noisy Twitter data can be less robust than specialized tools like VADER unless customized. Loria (2018) \cite{loria2018textblob} provides the foundation for TextBlob's functionalities.
+
+
+
+
+\subsection{Feedforward Neural Networks (FNNs)}
+
+Feedforward Neural Networks (FNNs), also known as Multi-Layer Perceptrons (MLPs), can be applied to sentiment analysis by taking word embeddings or other numerical text representations as input. While FNNs can learn complex patterns, they do not inherently capture the sequential nature of text as effectively as recurrent architectures. However, with appropriate feature engineering (e.g., using N-gram features or pre-trained word embeddings as input), FNNs can serve as effective classifiers. Zhang et al. (2015) \cite{zhang2015character} explored the use of character-level and word-level FNNs for text classification, highlighting their potential when combined with learned embeddings.
+
+\subsection{Convolutional Neural Networks (CNNs)}
+
+
+Convolutional Neural Networks (CNNs), initially designed for image processing, have been successfully adapted for text classification tasks. For text, 1D convolutions are applied over sequences of word embeddings to capture local patterns and N-gram features at different positions in the text. Kim (2014) \cite{kim2014convolutional} presented a work demonstrating the effectiveness of simple CNN architectures with pre-trained word embeddings for sentence-level classification tasks, including sentiment analysis. Subsequent research, such as Yin et al. (2017) \cite{yin2017comparative} in their comparative study, further explored various CNN architectures for text, showing their ability to learn hierarchical features from text data efficiently.
+
+
+
+\subsection{Recurrent Neural Networks (RNNs)}
+
+Recurrent Neural Networks are designed to process sequential data, making them naturally suited for text where word order and context are crucial.
+
+\subsubsection{Long Short-Term Memory (LSTM)}
+
+LSTMs, a type of RNN introduced by Hochreiter and Schmidhuber (1997) \cite{hochreiter1997long}, are specifically designed to overcome the vanishing gradient problem, allowing them to learn long-range dependencies in text. LSTMs have become a popular choice for sentiment analysis. Wang et al. (2016) \cite{wang2016ataelstm} demonstrated the utility of LSTMs for Twitter sentiment analysis, often using pre-trained word embeddings like Word2Vec or GloVe as input to the embedding layer.
+
+\subsubsection{Gated Recurrent Units (GRU)}
+
+GRUs, introduced by Cho et al. (2014) \cite{cho2014learning}, are a variation of LSTMs that simplify the gate mechanism, having fewer parameters and thus sometimes training faster while achieving comparable performance. GRUs are also effective for capturing sequential information in text and have been applied to Twitter sentiment analysis, often showing similar results to LSTMs as noted by Chung et al. (2014) \cite{chung2014empirical} in their empirical evaluation.
+
+
+\subsubsection{Bidirectional LSTMs (Bi-LSTM)
+}
+
+Bidirectional LSTMs process text in both forward and backward directions, allowing the model to capture context from past and future words simultaneously. This can lead to a richer understanding of the text and improved performance in sentiment analysis tasks. Schuster and Paliwal (1997) \cite{schuster1997bidirectional} introduced the concept of bidirectional RNNs. Many studies, such as Brahmbhatt et al. (2019) \cite{brahmbhatt2019comparative}, have shown that Bi-LSTMs often outperform unidirectional LSTMs on various NLP tasks, including Twitter sentiment analysis, by providing a more complete contextual representation.
+
+\subsection{Transformer-Based Models (BERT)
+}
+
+
+Transformer models, particularly BERT (Bidirectional Encoder Representations from Transformers) developed by Devlin et al. (2019) \cite{devlin2019bert}, have revolutionized the NLP landscape. BERT is pre-trained on vast amounts of text data and can be fine-tuned for specific tasks, including sentiment analysis, achieving state-of-the-art results. BERT's attention mechanism allows it to weigh the importance of different words when representing a sentence, capturing complex contextual relationships.Several studies have demonstrated BERT's effectiveness for Twitter sentiment analysis, often outperforming previous LSTM and CNN-based approaches, although they are computationally more intensive. This can be observed in \cite{article}, which presents a comparative analysis of various studies evaluating different models on Twitter sentiment tasks.  Variants like RoBERTa and specialized Twitter-BERT models (e.g., BERTweet by Nguyen et al. (2020) \cite{nguyen2020bertweet}) have further pushed performance boundaries on social media text.
+
