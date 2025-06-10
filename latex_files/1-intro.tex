@@ -4,7 +4,7 @@ Sentiment analysis, the computational study of opinions, sentiments, and emotion
 
 This paper aims at two key objectives. First, it provides a comprehensive review of the latest advances in Twitter sentiment analysis, critically analyzing and comparing other studies in the field. Second, it develops, optimizes, and evaluates a diverse set of modeling approaches using the "Twitter Entity Sentiment Analysis" dataset from Kaggle \cite{twitter_dataset}. This dataset comprises tweets annotated with sentiments towards various entities, posing a challenging multi-class sentiment classification problem.
 
-Our study will explore different techniques in accurately classifying tweet sentiment. These include traditional machine learning approaches such as Support Vector Machines (SVM) with Bag-of-Words (BoW) and Term Frequency-Inverse Document Frequency (TF-IDF) features; lexicon-based methods like VADER and TextBlob; Deep Learning (DL) architectures including Feed-Forward Neural Networks (FNNs), Convolutional Neural Networks (CNNs) for text, Long Short-Term Memory (LSTM) networks, Gated Recurrent Units (GRUs), and Bidirectional LSTMs (Bi-LSTMs); and finally, transformer-based models like BERT. The paper concludes with a detailed comparative analysis of the model performances and offers key insights derived from the experiments.
+Our study will explore different techniques in accurately classifying tweet sentiment. These include traditional machine learning approaches such as Support Vector Machines (SVM) with Bag-of-Words (BoW) and Term Frequency-Inverse Document Frequency (TF-IDF) features; lexicon-based methods like VADER and TextBlob; Deep Learning (DL) architectures including Feed-Forward Neural Networks (FNNs), Convolutional Neural Networks (CNNs) for text, Long Short-Term Memory (LSTM) networks, Gated Recurrent Units (GRUs), and Bidirectional LSTMs (Bi-LSTMs); and finally, transformer-based models like BERT. The paper concludes with a detailed comparative analysis of the model performances, offers key insights derived from the experiments, and provides a comparison with state-of-the-art methods.
 
 \section{State of the Art} 
 \label{sec}
@@ -13,7 +13,7 @@ A comprehensive state-of-the-art review was performed to identify the most suita
 
 \subsection{Traditional Machine Learning Approaches}
 
-Before the widespread adoption of deep learning, traditional machine learning algorithms were standard for sentiment analysis. These methods typically rely on handcrafted features extracted from the text.
+Before the widespread adoption of deep learning, traditional machine learning algorithms were standard for sentiment analysis. These methods typically rely on handcrafted features extracted from text.
 
 
 \subsubsection{Support Vector Machines (SVM)}
@@ -40,7 +40,7 @@ TextBlob is a Python library for processing textual data, offering a straightfor
 
 \subsection{Feedforward Neural Networks (FNNs)}
 
-Feedforward Neural Networks (FNNs), also known as Multi-Layer Perceptrons (MLPs), can be applied to sentiment analysis by taking word embeddings or other numerical text representations as input. While FNNs can learn complex patterns, they do not inherently capture the sequential nature of text as effectively as recurrent architectures. However, with appropriate feature engineering (e.g., using N-gram features or pre-trained word embeddings as input), FNNs can serve as effective classifiers. Zhang et al. (2015) \cite{zhang2015character} explored the use of character-level and word-level FNNs for text classification, highlighting their potential when combined with learned embeddings.
+Feedforward Neural Networks (FNNs) can be applied to sentiment analysis by taking word embeddings or other numerical text representations as input. While FNNs can learn complex patterns, they do not inherently capture the sequential nature of text as effectively as recurrent architectures. However, with appropriate feature engineering (e.g., using N-gram features or pre-trained word embeddings as input), FNNs can serve as effective classifiers. Zhang et al. (2015) \cite{zhang2015character} explored the use of character-level and word-level FNNs for text classification, highlighting their potential when combined with learned embeddings.
 
 \subsection{Convolutional Neural Networks (CNNs)}
 
